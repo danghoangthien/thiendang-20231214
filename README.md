@@ -17,17 +17,18 @@ Inpecting price and OHLC statistic of a crypto currency coin/token in specific d
 
 ## Introduction
 
-Inpecting price and OHLC statistic of a crypto currency coin/token in specific day range using market data from CoinGecko
+Inspecting price and OHLC statistic of a crypto currency coin/token in specific day range using market data from CoinGecko
 
 ## Features
 
-- Exloring trending coins.
-- Exloring coin list data.
+- Exploring trending coins.
+- Exploring coin list data.
 - Chart based price statistic by day range.
 - Chart based OHLC statistic by day range.
 - Market data provider is configurable, current version is supporting CoinGecko.
 - Coin list data is cached by leveraging localstorage.
 - Ultility for Calculating Max Profit of given day sequence stock prices list.
+- compare coin/token price based on USD by default.
 
 ## Frontend Architect Highlight
 
@@ -51,6 +52,14 @@ Here are instructions on how to set up and run project.
 
 ### Running with Docker
 ```bash
+# Copy the .env.example file to .env
+cp .env.example .env
+
+# Replace the placeholder PORT with your desired port number in the .env file
+# Example: Replace PORT=5173 with PORT=your_desired_port
+nano .env  # or use your preferred text editor
+
+# Start the application using Docker
 docker-compose up
 ```
 
@@ -96,3 +105,5 @@ Run test:
 - Applying more Unit test & automation test
 - Improving UI/UX
 - Caching Trending coins using localStorage
+- Make vs_currency configurable
+- Supporting more vs_currency
