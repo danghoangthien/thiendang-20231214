@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    container_name: coin-inspector-app
+    environment:
+      - PORT=5173  # Default port
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - ./.env:/app/.env
+    command: npm run dev
