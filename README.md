@@ -38,8 +38,6 @@ Inpecting price and OHLC statistic of a crypto currency coin/token in specific d
 
 ## Libraries in Use
 
-List the important libraries/frameworks used in your project. Include version numbers if possible.
-
 - [Mui v5](https://mui.com/)
 - [React Chartjs 2](https://reactchartjs.github.io/react-chartjs-2/)
 - [Chartjs Chart Financial](https://github.com/chartjs/chartjs-chart-financial)
@@ -49,7 +47,7 @@ List the important libraries/frameworks used in your project. Include version nu
 
 ## Getting Started
 
-Provide instructions on how to set up and run your project.
+Here are instructions on how to set up and run project.
 
 ### Running with Docker
 ```bash
