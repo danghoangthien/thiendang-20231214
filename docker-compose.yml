@@ -4,10 +4,8 @@ services:
     build:
       context: .
     container_name: coin-inspector-app
-    environment:
-      - PORT=5173  # Default port
     ports:
-      - "${PORT}:${PORT}"
+      - "${PORT:-5173}:${PORT:-5173}"
     volumes:
       - .:/app
       - /app/node_modules
