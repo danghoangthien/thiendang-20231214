@@ -1,6 +1,6 @@
-import type { RootModel } from './rootModel';
+import type { RootModel } from "./rootModel";
 
-import { createModel } from '@rematch/core';
+import { createModel } from "@rematch/core";
 
 const initialState: number = 0;
 
@@ -10,7 +10,7 @@ const activeChartType = createModel<RootModel>()({
     set(_: any, type: number) {
       return type;
     },
-  }
+  },
 });
 
 export default activeChartType;

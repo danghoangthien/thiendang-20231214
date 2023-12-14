@@ -1,6 +1,13 @@
-import { CoinServiceInterface, CoinData, CoinGeckoCoinCacheService } from './../../../services/coin/index';
+import {
+  CoinServiceInterface,
+  CoinData,
+  CoinGeckoCoinCacheService,
+} from "./../../../services/coin/index";
 
-export const fetchCoins = async (endpointProvider: CoinServiceInterface, inputValue: string): Promise<CoinData[]> => {
+export const fetchCoins = async (
+  endpointProvider: CoinServiceInterface,
+  inputValue: string
+): Promise<CoinData[]> => {
   const cacheProvider = new CoinGeckoCoinCacheService();
   let coinDataCollection: CoinData[];
   // Try get from cache first, then get from API
@@ -10,6 +17,8 @@ export const fetchCoins = async (endpointProvider: CoinServiceInterface, inputVa
     coinDataCollection = await endpointProvider.list();
     cacheProvider.storeCoinList(coinDataCollection);
   }
-  coinDataCollection.filter((coin: CoinData) => coin.name.toLowerCase().includes(inputValue.toLowerCase()))
+  coinDataCollection.filter((coin: CoinData) =>
+    coin.name.toLowerCase().includes(inputValue.toLowerCase())
+  );
   return coinDataCollection;
 };

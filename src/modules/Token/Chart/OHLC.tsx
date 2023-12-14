@@ -1,7 +1,7 @@
-import { FC } from 'react';
-import moment from 'moment';
-import { Line } from 'react-chartjs-2';
-import 'chartjs-chart-financial'; 
+import { FC } from "react";
+import moment from "moment";
+import { Line } from "react-chartjs-2";
+import "chartjs-chart-financial";
 
 import {
   Chart as ChartJS,
@@ -12,10 +12,10 @@ import {
   Tooltip,
   Legend,
   TimeScale,
-  CategoryScale
-} from 'chart.js';
+  CategoryScale,
+} from "chart.js";
 
-import 'chartjs-adapter-moment';
+import "chartjs-adapter-moment";
 
 ChartJS.register(
   TimeScale,
@@ -60,21 +60,21 @@ ChartJS.register(
 // };
 
 interface CanvasProps {
-  chartData: any
+  chartData: any;
 }
 
 const options = {
   scales: {
     x: {
-      type: 'time',
+      type: "time",
       time: {
-        unit: 'day',
+        unit: "day",
       },
     },
     y: {
       title: {
         display: true,
-        text: 'Price',
+        text: "Price",
       },
       ticks: {
         // Add any y-axis configuration here, if needed
@@ -83,7 +83,7 @@ const options = {
   },
 };
 
-const OHLCChart = ({ chartData } : { chartData: CanvasProps}) => {
+const OHLCChart = ({ chartData }: { chartData: CanvasProps }) => {
   return (
     <div>
       <Line data={chartData} options={options} type="candlestick" />

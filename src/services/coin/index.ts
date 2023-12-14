@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 /**
  * Represents the structure of a coin data object.
@@ -6,7 +6,7 @@ import axios from 'axios';
  * @property {string} id - The unique identifier of the coin.
  * @property {string} name - The name of the coin.
  */
- export interface CoinData {
+export interface CoinData {
   ath: number;
   ath_change_percentage: number;
   ath_date: string;
@@ -41,15 +41,17 @@ import axios from 'axios';
  * @interface
  */
 export interface CoinServiceInterface {
-
   list(): Promise<CoinData[]>;
 
-  fetchHistoricalData(coinSymbol: string, vsCurrency: string, day: string): Promise<any[]>
+  fetchHistoricalData(
+    coinSymbol: string,
+    vsCurrency: string,
+    day: string
+  ): Promise<any[]>;
 
   fetchTrendingCoins(): Promise<CoinData[]>;
 
-  fetchOHLC(coinSymbol: string, activeDayRange: number): Promise<any>;  
-
+  fetchOHLC(coinSymbol: string, activeDayRange: number): Promise<any>;
 }
 
 /**
@@ -65,55 +67,67 @@ export class CoinGeckoCoinService implements CoinServiceInterface {
   private endpointUrl: string;
 
   constructor() {
-    this.endpointUrl = 'https://api.coingecko.com/api/v3';
+    this.endpointUrl = "https://api.coingecko.com/api/v3";
   }
 
-  async list() : Promise<CoinData[]> {
+  async list(): Promise<CoinData[]> {
     try {
-      const response = await axios.get(`${this.endpointUrl}/coins/list?include_platform=false`);
-      const coinList = response.data
+      const response = await axios.get(
+        `${this.endpointUrl}/coins/list?include_platform=false`
+      );
+      const coinList = response.data;
       return coinList;
     } catch (error) {
-      console.error(`Error fetching coin list from ${this.endpointUrl}:`, error);
+      console.error(
+        `Error fetching coin list from ${this.endpointUrl}:`,
+        error
+      );
       throw error;
     }
   }
 
-  async fetchHistoricalData(coinSymbol: string, vsCurrency: string, days: string) : Promise<any[]> {
+  async fetchHistoricalData(
+    coinSymbol: string,
+    vsCurrency: string,
+    days: string
+  ): Promise<any[]> {
     try {
-      const response = await axios.get(`${this.endpointUrl}/coins/${coinSymbol}/market_chart`, {
-        params: {
-          vs_currency: vsCurrency,
-          days: days,
-        },
-      });
+      const response = await axios.get(
+        `${this.endpointUrl}/coins/${coinSymbol}/market_chart`,
+        {
+          params: {
+            vs_currency: vsCurrency,
+            days: days,
+          },
+        }
+      );
       return response.data.prices;
     } catch (error) {
-      console.error(`Error fetching coin historical data from ${this.endpointUrl}:`, error);
+      console.error(
+        `Error fetching coin historical data from ${this.endpointUrl}:`,
+        error
+      );
       throw error;
     }
   }
 
   async fetchTrendingCoins(): Promise<CoinData[]> {
     try {
-      const response = await axios.get(
-        `${this.endpointUrl}/coins/markets`,
-        {
-          params: {
-            vs_currency: 'usd',
-            order: 'gecko_desc',
-            per_page: 10,
-            page: 1,
-            sparkline: false,
-          },
-        }
-      );
+      const response = await axios.get(`${this.endpointUrl}/coins/markets`, {
+        params: {
+          vs_currency: "usd",
+          order: "gecko_desc",
+          per_page: 10,
+          page: 1,
+          sparkline: false,
+        },
+      });
       return response.data;
     } catch (error) {
-      console.error('Error fetching trending coins:', error);
+      console.error("Error fetching trending coins:", error);
       throw error;
     }
-  };
+  }
 
   async fetchOHLC(coinSymbol: string, activeDayRange: number): Promise<any> {
     try {
@@ -121,15 +135,15 @@ export class CoinGeckoCoinService implements CoinServiceInterface {
         `${this.endpointUrl}/coins/${coinSymbol}/ohlc`,
         {
           params: {
-            vs_currency: 'usd',
+            vs_currency: "usd",
             days: activeDayRange,
-            precision: 'full',
+            precision: "full",
           },
         }
       );
       return response.data;
     } catch (error) {
-      console.error('Error fetching OHLC:', error);
+      console.error("Error fetching OHLC:", error);
       throw error;
     }
   }
@@ -138,25 +152,25 @@ export class CoinGeckoCoinService implements CoinServiceInterface {
 export class CoinGeckoCoinCacheService {
   private cacheKey: string;
 
-  constructor(cacheKey: string = 'coin-data-collection') {
+  constructor(cacheKey: string = "coin-data-collection") {
     this.cacheKey = cacheKey;
   }
 
   list() {
     try {
-      const storedData = localStorage.getItem(this.cacheKey) ?? '';
+      const storedData = localStorage.getItem(this.cacheKey) ?? "";
 
       const parsedData = JSON.parse(storedData);
 
       if (!Array.isArray(parsedData)) {
-        throw new Error('Stored data is not an array.');
+        throw new Error("Stored data is not an array.");
       }
 
       const coinList = parsedData;
-      console.log('coinList', coinList);
+      console.log("coinList", coinList);
       return coinList;
     } catch (error) {
-      console.error('Error fetching coin list from cache:', error);
+      console.error("Error fetching coin list from cache:", error);
       throw error;
     }
   }

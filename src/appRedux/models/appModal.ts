@@ -1,11 +1,11 @@
-import type { RootModel } from './rootModel';
+import type { RootModel } from "./rootModel";
 
-import { createModel } from '@rematch/core';
+import { createModel } from "@rematch/core";
 
 const initialState = {
   isOpen: false,
-  title: '',
-  contentComponent: null // Initially, there's no content
+  title: "",
+  contentComponent: null, // Initially, there's no content
 };
 
 const appModal = createModel<RootModel>()({
@@ -14,36 +14,36 @@ const appModal = createModel<RootModel>()({
     open(state) {
       return {
         ...state,
-        isOpen: true
+        isOpen: true,
       };
     },
     close(state) {
       return {
         ...state,
-        title: '',
+        title: "",
         contentComponent: null,
-        isOpen: false
+        isOpen: false,
       };
     },
     setTitle(state, title) {
       return {
         ...state,
-        title
+        title,
       };
     },
     setContentComponent(state, contentComponent) {
       return {
         ...state,
-        contentComponent
+        contentComponent,
       };
     },
     clearContentComponent(state) {
       return {
         ...state,
-        contentComponent: null
+        contentComponent: null,
       };
-    }
-  }
+    },
+  },
 });
 
 export default appModal;

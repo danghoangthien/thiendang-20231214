@@ -1,14 +1,15 @@
-import { RematchDispatch, RematchRootState, init } from '@rematch/core';
-import loading, { ExtraModelsFromLoading } from '@rematch/loading';
-import selectPlugin from '@rematch/select';
-import updated, { ExtraModelsFromUpdated } from '@rematch/updated';
-import { RootModel, models } from './../models/rootModel';
+import { RematchDispatch, RematchRootState, init } from "@rematch/core";
+import loading, { ExtraModelsFromLoading } from "@rematch/loading";
+import selectPlugin from "@rematch/select";
+import updated, { ExtraModelsFromUpdated } from "@rematch/updated";
+import { RootModel, models } from "./../models/rootModel";
 
-type FullModel = ExtraModelsFromLoading<RootModel> & ExtraModelsFromUpdated<RootModel>;
+type FullModel = ExtraModelsFromLoading<RootModel> &
+  ExtraModelsFromUpdated<RootModel>;
 
 export const store = init<RootModel, FullModel>({
   models,
-  plugins: [updated(), loading(), selectPlugin()]
+  plugins: [updated(), loading(), selectPlugin()],
 });
 
 export const initializeStore = (initialState?: RootModel) => {
@@ -16,12 +17,12 @@ export const initializeStore = (initialState?: RootModel) => {
     return init({
       models,
       redux: {
-        initialState
-      }
+        initialState,
+      },
     });
   } else {
     return init({
-      models
+      models,
     });
   }
 };

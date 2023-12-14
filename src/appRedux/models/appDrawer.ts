@@ -1,10 +1,10 @@
-import type { RootModel } from './rootModel';
+import type { RootModel } from "./rootModel";
 
-import { createModel } from '@rematch/core';
+import { createModel } from "@rematch/core";
 
 const initialState = {
   isOpen: false,
-  contentComponent: null // Initially, there's no content
+  contentComponent: null, // Initially, there's no content
 };
 
 const appDrawer = createModel<RootModel>()({
@@ -13,28 +13,28 @@ const appDrawer = createModel<RootModel>()({
     open(state) {
       return {
         ...state,
-        isOpen: true
+        isOpen: true,
       };
     },
     close(state) {
       return {
         ...state,
-        isOpen: false
+        isOpen: false,
       };
     },
     setContentComponent(state, contentComponent) {
       return {
         ...state,
-        contentComponent
+        contentComponent,
       };
     },
     clearContentComponent(state) {
       return {
         ...state,
-        contentComponent: null
+        contentComponent: null,
       };
-    }
-  }
+    },
+  },
 });
 
 export default appDrawer;

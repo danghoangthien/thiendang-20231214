@@ -1,10 +1,10 @@
-import { CoinServiceInterface, CoinGeckoCoinService } from './index';
+import { CoinServiceInterface, CoinGeckoCoinService } from "./index";
 
 export const createCoinService = (type: string): CoinServiceInterface => {
   switch (type.toLowerCase()) {
-    case 'coingecko':
+    case "coingecko":
       return new CoinGeckoCoinService();
     default:
-      throw new Error('Invalid CoinServiceType');
+      throw new Error("Invalid CoinServiceType");
   }
 };
